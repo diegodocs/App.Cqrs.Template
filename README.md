@@ -1,2 +1,1 @@
-# App.Cqrs.Template
-App.Cqrs.Template
+## App.Crqs.Template
