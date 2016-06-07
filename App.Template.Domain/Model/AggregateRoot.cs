@@ -1,5 +1,7 @@
 ﻿
+using App.Cqrs.Core.Event;
 using App.Cqrs.Template.Core.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace App.Template.Domain.Model
@@ -8,15 +10,10 @@ namespace App.Template.Domain.Model
     {
         private readonly List<object> appliedEvents = new List<object>();
 
-        public System.Guid Id { get; protected set; }
+        public Guid Id { get; protected set; }
 
-        public int Version { get; protected set; }   
+        public int Version { get; protected set; }          
         
-        protected void Initiate()
-        {
-            this.Id = System.Guid.NewGuid();
-            this.Version = 1;
-        }            
 
         public IEnumerable<object> AppliedEvents
         {

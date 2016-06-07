@@ -2,15 +2,18 @@
 using App.Cqrs.Core.Event;
 using App.Cqrs.Template.ApplicationSvc.Command;
 using App.Cqrs.Template.Core.Repository;
+using App.Template.Domain.Event;
 using App.Template.Domain.Model;
 
 namespace App.Cqrs.Template.ApplicationSvc.CommandHandler
 {
     public class EmployeeCreateCommandHandler : ICommandHandler<EmployeeCreateCommand>
     {
-        private readonly IRepository<Employee> employeeRepository;
-        private readonly IEventPublisher eventPublisher;
-        public EmployeeCreateCommandHandler(IRepository<Employee> employeeRepository, IEventPublisher eventPublisher)
+        private readonly IRepositoryPersistenceService<Employee> employeeRepository;
+        private readonly IEventPublisher<EmployeeCreated> eventPublisher;
+        public EmployeeCreateCommandHandler(
+            IRepositoryPersistenceService<Employee> employeeRepository, 
+            IEventPublisher<EmployeeCreated> eventPublisher)
         {            
             this.employeeRepository = employeeRepository;
             this.eventPublisher = eventPublisher;
@@ -23,7 +26,7 @@ namespace App.Cqrs.Template.ApplicationSvc.CommandHandler
             employeeRepository.Insert(employee);
 
             foreach (var @event in employee.AppliedEvents)
-                eventPublisher.Publish((IEvent)@event);
+                eventPublisher.Publish((EmployeeCreated)@event);
         }
     }
 }

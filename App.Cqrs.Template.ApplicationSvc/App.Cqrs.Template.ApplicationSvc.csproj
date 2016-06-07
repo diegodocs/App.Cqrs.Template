@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,14 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventHandler\EmployeeCreatedEventHandler.cs" />
     <Compile Include="CommandHandler\EmployeeCreateCommandHandler.cs" />
     <Compile Include="Command\EmployeeCreateCommand.cs" />
+    <Compile Include="DTO\DTOEmployee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryHandler\TasksByStatusQueryHandler.cs" />
-    <Compile Include="QueryResult\TasksByStatusQueryResult.cs" />
-    <Compile Include="Query\TasksByStatusQuery.cs" />
+    <Compile Include="QueryHandler\EmployeeByNameQueryHandler.cs" />
+    <Compile Include="QueryResult\EmployeeByNameQueryResult.cs" />
+    <Compile Include="Query\EmployeeByNameQuery.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\App.Cqrs.Core\App.Cqrs.Core.csproj">
       <Project>{9C92164B-6C8F-4F8E-926D-ADE94D2F97F6}</Project>
@@ -61,6 +66,9 @@
       <Project>{0953BE64-29F6-42A0-B8E4-DA147E0187B9}</Project>
       <Name>App.Template.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

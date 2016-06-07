@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace App.Cqrs.Template.Core.Repository
 {
-    public interface IRepositoryQueryService<TEntity>: IDisposable where TEntity : IAggregateRoot
+    public interface IRepositoryQueryService<TEntity> where TEntity : IEntityBase
     {
         TEntity Find(Expression<Func<TEntity, bool>> expression);        
         IEnumerable<TEntity> All();

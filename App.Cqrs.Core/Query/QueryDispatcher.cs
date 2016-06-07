@@ -1,26 +1,22 @@
 ﻿using System;
-using Ninject;
+using Autofac;
 
 namespace App.Cqrs.Core.Query
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        private readonly IKernel _kernel;
+        private readonly IContainer container;
 
-        public QueryDispatcher(IKernel kernel)
-        {
-            if (kernel == null)
-            {
-                throw new ArgumentNullException("kernel");
-            }
-            _kernel = kernel;
+        public QueryDispatcher(IContainer container)
+        {            
+            this.container = container;
         }
 
         public TResult Dispatch<TParameter, TResult>(TParameter query)
             where TParameter : IQuery
             where TResult : IQueryResult
         {
-            var handler = _kernel.Get<IQueryHandler<TParameter, TResult>>();
+            var handler = container.Resolve<IQueryHandler<TParameter, TResult>>();
             return handler.Retrieve(query);
         }
 

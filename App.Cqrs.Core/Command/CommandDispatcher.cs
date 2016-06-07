@@ -1,26 +1,20 @@
-﻿using System;
-using Ninject;
+﻿using Autofac;
 
 namespace App.Cqrs.Core.Command
 {
     public class CommandDispatcher : ICommandDispatcher
     {
-        private readonly IKernel _kernel;
+        private readonly IContainer container;
 
-        public CommandDispatcher(IKernel kernel)
-        {
-            if (kernel == null)
-            {
-                throw new ArgumentNullException("kernel");
-            }
-            _kernel = kernel;
+        public CommandDispatcher(IContainer container)
+        {            
+            this.container = container;
         }
 
         public void Dispatch<TParameter>(TParameter command) where TParameter : ICommand
         {
-            var handler = _kernel.Get<ICommandHandler<TParameter>>();
+            var handler = container.Resolve<ICommandHandler<TParameter>>();
             handler.Execute(command);
         }
-
     }
 }

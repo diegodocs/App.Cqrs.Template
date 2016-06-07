@@ -10,7 +10,7 @@ namespace App.Template.Domain.Model
     {
         public Employee(string name, string job, int level, decimal salary)
         {
-            Apply(new EmployeeCreated(name, job, level, salary));
+            Apply(new EmployeeCreated(Guid.NewGuid(), name, job, level, salary));
         }
 
         public string Name { get; protected set; }
@@ -27,7 +27,7 @@ namespace App.Template.Domain.Model
 
         protected void Apply(EmployeeCreated @event)
         {
-            this.Initiate();
+            this.Id = Id;
             this.Name = @event.Name;
             this.CurrentJob = @event.CurrentJob;
             this.CurrentLevel = @event.CurrentLevel;

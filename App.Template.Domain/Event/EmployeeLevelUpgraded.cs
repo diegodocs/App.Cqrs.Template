@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using App.Cqrs.Core.Event;
 
 namespace App.Template.Domain.Event
 {
-    public class EmployeeLevelUpgraded
+    public class EmployeeLevelUpgraded 
     {
         public EmployeeLevelUpgraded( int level, decimal salary)
         {            

@@ -1,25 +1,20 @@
-﻿using System;
-using Ninject;
+﻿using System.Collections.Generic;
 
 namespace App.Cqrs.Core.Event
 {
-    public class EventPublisher : IEventPublisher
+    public class EventPublisher<TEvent> : IEventPublisher<TEvent> where TEvent : IEvent
     {
-        private readonly IKernel _kernel;
+        private readonly IEnumerable<IEventHandler<TEvent>> eventHandlerList;
 
-        public EventPublisher(IKernel kernel)
+        public EventPublisher(IEnumerable<IEventHandler<TEvent>> eventHandlerList)
         {
-            if (kernel == null)
-            {
-                throw new ArgumentNullException("kernel");
-            }
-            _kernel = kernel;
+            this.eventHandlerList = eventHandlerList;
         }
 
-        public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
+        public void Publish(TEvent @event)
         {
-            var handler = _kernel.Get<IEventHandler<TEvent>>();
-            handler.Handle(@event);
+            foreach(var handler in eventHandlerList)
+                handler.Handle(@event);            
         }
-    }
+    }    
 }

@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Cqrs.Template.Applicati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Cqrs.Template.Core", "App.Cqrs.Template.Core\App.Cqrs.Template.Core.csproj", "{D93A1639-31BC-44C5-8E7E-F528D481C45C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Test", "4-Test", "{36C4FB48-86F0-4B1F-A146-E782BE27D8ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Cqrs.Template.Test.Unit", "App.Cqrs.Template.Test.Unit\App.Cqrs.Template.Test.Unit.csproj", "{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,10 @@ Global
 		{D93A1639-31BC-44C5-8E7E-F528D481C45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D93A1639-31BC-44C5-8E7E-F528D481C45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D93A1639-31BC-44C5-8E7E-F528D481C45C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,5 +62,6 @@ Global
 		{0953BE64-29F6-42A0-B8E4-DA147E0187B9} = {CB523778-641D-4F85-A50E-B7D1E67B0579}
 		{6A7845BB-1F45-4DA7-AC4C-3D6DDF965A42} = {288DC515-3215-4F81-954B-08C69998F208}
 		{D93A1639-31BC-44C5-8E7E-F528D481C45C} = {63B6438E-5447-49C9-BFE8-06D6DB832C19}
+		{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A} = {36C4FB48-86F0-4B1F-A146-E782BE27D8ED}
 	EndGlobalSection
 EndGlobal
