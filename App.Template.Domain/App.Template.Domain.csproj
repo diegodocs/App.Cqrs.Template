@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Event\EmployeeJobChanged.cs" />
     <Compile Include="Event\EmployeeCreated.cs" />
+    <Compile Include="Event\EmployeeJobChanged.cs" />
+    <Compile Include="Event\EmployeeUserAccountCreated.cs" />
     <Compile Include="Event\EmployeeLevelUpgraded.cs" />
     <Compile Include="Model\AggregateRoot.cs" />
     <Compile Include="Model\Employee.cs" />

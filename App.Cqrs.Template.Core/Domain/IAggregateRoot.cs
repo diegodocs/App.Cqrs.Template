@@ -10,6 +10,6 @@ namespace App.Cqrs.Template.Core.Domain
         {
             get;
         }
-        IEnumerable<object> AppliedEvents { get; }
+        IEnumerable<IEvent> AppliedEvents { get; }
     }
 }

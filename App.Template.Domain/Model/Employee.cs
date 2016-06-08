@@ -10,7 +10,9 @@ namespace App.Template.Domain.Model
     {
         public Employee(string name, string job, int level, decimal salary)
         {
-            Apply(new EmployeeCreated(Guid.NewGuid(), name, job, level, salary));
+            var id = Guid.NewGuid();
+            Apply(new EmployeeCreated(id, name, job, level, salary));
+            Apply(new EmployeeUserAccountCreated(id, name));
         }
 
         public string Name { get; protected set; }
@@ -34,6 +36,14 @@ namespace App.Template.Domain.Model
             this.CurrentSalary = @event.CurrentSalary;
             this.JobHistoryList = new List<JobHistory>();
             
+            OnApplied(@event);
+        }
+
+        protected void Apply(EmployeeUserAccountCreated @event)
+        {
+            this.Id = Id;
+            this.Name = @event.Name;        
+
             OnApplied(@event);
         }
 

@@ -1,5 +1,5 @@
 ﻿using App.Cqrs.Core.Query;
-using App.Cqrs.Template.ApplicationSvc.DTO;
+using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.ApplicationSvc.Query;
 using App.Cqrs.Template.ApplicationSvc.QueryResult;
 using App.Cqrs.Template.Core.Repository;
@@ -9,9 +9,9 @@ namespace App.Cqrs.Template.ApplicationSvc.QueryHandler
 {
     public class EmployeeByNameQueryHandler : IQueryHandler<EmployeeByNameQuery, EmployeeByNameQueryResult>
     {
-        private readonly IRepository<DTOEmployee> repositoryDTOEmployee;
+        private readonly IRepository<EmployeeReadModel> repositoryDTOEmployee;
 
-        public EmployeeByNameQueryHandler(IRepository<DTOEmployee> repositoryDTOEmployee)
+        public EmployeeByNameQueryHandler(IRepository<EmployeeReadModel> repositoryDTOEmployee)
         {
             this.repositoryDTOEmployee = repositoryDTOEmployee;
         }

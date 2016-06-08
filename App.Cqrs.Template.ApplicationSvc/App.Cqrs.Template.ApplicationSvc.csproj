@@ -44,10 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventHandler\EmployeeUserAccountCreatedEventHandler.cs" />
     <Compile Include="EventHandler\EmployeeCreatedEventHandler.cs" />
     <Compile Include="CommandHandler\EmployeeCreateCommandHandler.cs" />
     <Compile Include="Command\EmployeeCreateCommand.cs" />
-    <Compile Include="DTO\DTOEmployee.cs" />
+    <Compile Include="ReadModel\EmployeeUserAccountReadModel.cs" />
+    <Compile Include="ReadModel\EmployeeReadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandler\EmployeeByNameQueryHandler.cs" />
     <Compile Include="QueryResult\EmployeeByNameQueryResult.cs" />

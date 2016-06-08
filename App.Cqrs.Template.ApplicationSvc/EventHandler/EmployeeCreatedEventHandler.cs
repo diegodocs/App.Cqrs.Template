@@ -1,5 +1,5 @@
 ﻿using App.Cqrs.Core.Event;
-using App.Cqrs.Template.ApplicationSvc.DTO;
+using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using App.Template.Domain.Event;
 
@@ -7,15 +7,15 @@ namespace App.Cqrs.Template.ApplicationSvc.CommandHandler
 {
     public class EmployeeCreatedEventHandler : IEventHandler<EmployeeCreated>
     {
-        private readonly IRepository<DTOEmployee> employeeRepository;
-        public EmployeeCreatedEventHandler(IRepository<DTOEmployee> employeeRepository)
+        private readonly IRepository<EmployeeReadModel> employeeRepository;
+        public EmployeeCreatedEventHandler(IRepository<EmployeeReadModel> employeeRepository)
         {
             this.employeeRepository = employeeRepository;
         }
 
         public void Handle(EmployeeCreated @event)
         {
-            employeeRepository.Insert(new DTOEmployee
+            employeeRepository.Insert(new EmployeeReadModel
             {
                 Id = @event.Id,
                 Name = @event.Name,
@@ -23,6 +23,8 @@ namespace App.Cqrs.Template.ApplicationSvc.CommandHandler
                 CurrentLevel = @event.CurrentLevel,
                 CurrentSalary = @event.CurrentSalary
             });
+
+
         }
     }
 }

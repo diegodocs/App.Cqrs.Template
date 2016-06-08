@@ -1,6 +1,8 @@
 ﻿using App.Cqrs.Core.Command;
 using App.Cqrs.Core.Event;
 using App.Cqrs.Template.ApplicationSvc.Command;
+using App.Cqrs.Template.ApplicationSvc.CommandHandler;
+using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using App.Cqrs.Template.Test.Unit.Infrastructure;
 using App.Template.Domain.Model;
@@ -25,9 +27,10 @@ namespace App.Cqrs.Template.Test.Unit
             builder.RegisterGeneric(typeof(RepositoryInMemory<>)).AsImplementedInterfaces().SingleInstance();
             builder.RegisterGeneric(typeof(EventPublisher<>)).As(typeof(IEventPublisher<>));
 
+
             var types = AppDomain
                             .CurrentDomain
-                            .GetAssemblies().SelectMany(n=>n.GetReferencedAssemblies()).Select(n=> Assembly.Load(n))
+                            .GetAssemblies().SelectMany(n => n.GetReferencedAssemblies()).Select(n => Assembly.Load(n))
                             .SelectMany(n => n.GetTypes())
                                             .Where(n => n.Namespace != null && n.Namespace.StartsWith("App.") && (
                                                 n.Name.EndsWith("EventHandler") ||
@@ -47,6 +50,28 @@ namespace App.Cqrs.Template.Test.Unit
             var command = new EmployeeCreateCommand(name, "Architecture", 10, 200);
 
             var queryServiceEmployee = container.Resolve<IRepository<Employee>>();
+            var handler = container.Resolve<ICommandHandler<EmployeeCreateCommand>>();
+
+            // Act
+            handler.Execute(command);
+
+            // Assert
+            Assert.AreEqual(
+                expectedNumberOfEmployee,
+                queryServiceEmployee.FindList(x => x.Name == name).Count());
+
+            Assert.AreEqual(name, queryServiceEmployee.All().Single().Name);
+        }
+
+        [TestMethod]
+        public void Execute_EmployeeCreate_NewReadModelCreated()
+        {
+            // Arrange
+            var expectedNumberOfEmployee = 1;
+            var name = "Jet Lee";
+            var command = new EmployeeCreateCommand(name, "Scrum Master", 8, 180);
+
+            var queryServiceEmployee = container.Resolve<IRepository<EmployeeReadModel>>();
             var handler = container.Resolve<ICommandHandler<EmployeeCreateCommand>>();
 
             // Act
