@@ -1,10 +1,8 @@
-﻿namespace App.Cqrs.Core.Command
+﻿using App.Cqrs.Core.Bus;
+
+namespace App.Cqrs.Core.Command
 {
-    /// <summary>
-    /// Marker interface to mark a command
-    /// </summary>
-    public interface ICommand
+    public interface ICommand: IMessage
     {
-        
     }
 }

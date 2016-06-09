@@ -52,12 +52,6 @@
     <Compile Include="Repository\IRepositoryPersistenceService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\App.Cqrs.Core\App.Cqrs.Core.csproj">
-      <Project>{9C92164B-6C8F-4F8E-926D-ADE94D2F97F6}</Project>
-      <Name>App.Cqrs.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

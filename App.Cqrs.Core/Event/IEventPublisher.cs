@@ -1,7 +1,7 @@
 ﻿namespace App.Cqrs.Core.Event
 {
-    public interface IEventPublisher<in TEvent> where TEvent : IEvent
+    public interface IEventPublisher 
     {
-        void Publish(TEvent @event);
+        void Publish<TEvent>(TEvent @event) where TEvent : IEvent;
     }
 }

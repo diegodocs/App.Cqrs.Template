@@ -8,14 +8,14 @@ namespace App.Template.Domain.Model
 {
     public class AggregateRoot : IAggregateRoot
     {
-        private readonly List<IEvent> appliedEvents = new List<IEvent>();
+        private readonly List<object> appliedEvents = new List<object>();
 
         public Guid Id { get; protected set; }
 
         public int Version { get; protected set; }          
         
 
-        public IEnumerable<IEvent> AppliedEvents
+        public IEnumerable<object> AppliedEvents
         {
             get { return appliedEvents; }
         }

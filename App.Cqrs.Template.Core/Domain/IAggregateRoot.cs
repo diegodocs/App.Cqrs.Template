@@ -1,5 +1,4 @@
-﻿using App.Cqrs.Core.Event;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace App.Cqrs.Template.Core.Domain
@@ -10,6 +9,6 @@ namespace App.Cqrs.Template.Core.Domain
         {
             get;
         }
-        IEnumerable<IEvent> AppliedEvents { get; }
+        IEnumerable<object> AppliedEvents { get; }
     }
 }

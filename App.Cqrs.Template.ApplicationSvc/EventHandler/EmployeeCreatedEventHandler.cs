@@ -1,16 +1,22 @@
-﻿using App.Cqrs.Core.Event;
+﻿using System;
+using App.Cqrs.Core.Event;
 using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using App.Template.Domain.Event;
 
-namespace App.Cqrs.Template.ApplicationSvc.CommandHandler
+namespace App.Cqrs.Template.ApplicationSvc.EventHandler
 {
-    public class EmployeeCreatedEventHandler : IEventHandler<EmployeeCreated>
+    public class EmployeeCreatedEventHandler : IEventHandler<EmployeeCreated>, IEventHandler<IEvent>
     {
         private readonly IRepository<EmployeeReadModel> employeeRepository;
         public EmployeeCreatedEventHandler(IRepository<EmployeeReadModel> employeeRepository)
         {
             this.employeeRepository = employeeRepository;
+        }
+
+        public void Handle(IEvent @event)
+        {
+            Handle((EmployeeCreated)@event);
         }
 
         public void Handle(EmployeeCreated @event)
@@ -23,8 +29,6 @@ namespace App.Cqrs.Template.ApplicationSvc.CommandHandler
                 CurrentLevel = @event.CurrentLevel,
                 CurrentSalary = @event.CurrentSalary
             });
-
-
         }
     }
 }

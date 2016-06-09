@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C92164B-6C8F-4F8E-926D-ADE94D2F97F6}</ProjectGuid>
+    <ProjectGuid>{22DD806C-D3EA-4BA4-8013-9387CAC9025B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>App.Cqrs.Core</RootNamespace>
-    <AssemblyName>App.Cqrs.Core</AssemblyName>
+    <RootNamespace>App.Cqrs.Template.Infrastructure</RootNamespace>
+    <AssemblyName>App.Cqrs.Template.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,31 +40,23 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bus\IBus.cs" />
-    <Compile Include="Bus\IMessage.cs" />
-    <Compile Include="Command\CommandDispatcher.cs" />
-    <Compile Include="Command\ICommand.cs" />
-    <Compile Include="Command\ICommandDispatcher.cs" />
-    <Compile Include="Command\ICommandHandler.cs" />
-    <Compile Include="Event\EventPublisher.cs" />
-    <Compile Include="Event\IEvent.cs" />
-    <Compile Include="Event\IEventHandler.cs" />
-    <Compile Include="Event\IEventPublisher.cs" />
-    <Compile Include="Query\IQuery.cs" />
-    <Compile Include="Query\IQueryDispatcher.cs" />
-    <Compile Include="Query\IQueryHandler.cs" />
-    <Compile Include="Query\IQueryResult.cs" />
-    <Compile Include="Query\QueryDispatcher.cs" />
+    <Compile Include="Bus\FakeBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\App.Cqrs.Core\App.Cqrs.Core.csproj">
+      <Project>{9C92164B-6C8F-4F8E-926D-ADE94D2F97F6}</Project>
+      <Name>App.Cqrs.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

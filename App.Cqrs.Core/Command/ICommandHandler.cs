@@ -1,8 +1,7 @@
 ﻿namespace App.Cqrs.Core.Command
 {
-    public interface ICommandHandler<in TParameter> where TParameter : ICommand
+    public interface ICommandHandler<in TCommand> where TCommand : ICommand
     {
-        void Execute(TParameter command);
+        void Handle(TCommand command);
     }
-
 }

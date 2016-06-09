@@ -68,13 +68,17 @@
       <Project>{9c92164b-6c8f-4f8e-926d-ade94d2f97f6}</Project>
       <Name>App.Cqrs.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\App.Cqrs.Template.ApplicationSvc\App.Cqrs.Template.ApplicationSvc.csproj">
+    <ProjectReference Include="..\App.Cqrs.Template.ApplicationSvc\App.Cqrs.Template.Application.csproj">
       <Project>{6A7845BB-1F45-4DA7-AC4C-3D6DDF965A42}</Project>
-      <Name>App.Cqrs.Template.ApplicationSvc</Name>
+      <Name>App.Cqrs.Template.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\App.Cqrs.Template.Core\App.Cqrs.Template.Core.csproj">
       <Project>{D93A1639-31BC-44C5-8E7E-F528D481C45C}</Project>
       <Name>App.Cqrs.Template.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.Cqrs.Template.Infrastructure\App.Cqrs.Template.Infrastructure.csproj">
+      <Project>{22DD806C-D3EA-4BA4-8013-9387CAC9025B}</Project>
+      <Name>App.Cqrs.Template.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\App.Template.Domain\App.Template.Domain.csproj">
       <Project>{0953BE64-29F6-42A0-B8E4-DA147E0187B9}</Project>

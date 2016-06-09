@@ -2,16 +2,16 @@
 
 namespace App.Cqrs.Core.Event
 {
-    public class EventPublisher<TEvent> : IEventPublisher<TEvent> where TEvent : IEvent
+    public class EventPublisher : IEventPublisher 
     {
-        private readonly IEnumerable<IEventHandler<TEvent>> eventHandlerList;
+        private readonly IEnumerable<IEventHandler<IEvent>> eventHandlerList;
 
-        public EventPublisher(IEnumerable<IEventHandler<TEvent>> eventHandlerList)
+        public EventPublisher(IEnumerable<IEventHandler<IEvent>> eventHandlerList)
         {
             this.eventHandlerList = eventHandlerList;
         }
 
-        public void Publish(TEvent @event)
+        public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
         {
             foreach(var handler in eventHandlerList)
                 handler.Handle(@event);            

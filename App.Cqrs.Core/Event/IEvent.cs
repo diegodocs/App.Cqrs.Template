@@ -1,10 +1,8 @@
-﻿namespace App.Cqrs.Core.Event
+﻿using App.Cqrs.Core.Bus;
+
+namespace App.Cqrs.Core.Event
 {
-    /// <summary>
-    /// Marker interface to mark an event
-    /// </summary>
-    public interface IEvent
-    {
-        
+    public interface IEvent: IMessage
+    {        
     }
 }
