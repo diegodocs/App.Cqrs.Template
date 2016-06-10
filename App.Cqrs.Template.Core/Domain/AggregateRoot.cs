@@ -1,9 +1,7 @@
-﻿using App.Cqrs.Core.Event;
-using App.Cqrs.Template.Core.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace App.Template.Domain.Model
+namespace App.Cqrs.Template.Core.Domain
 {
     public class AggregateRoot : IAggregateRoot
     {
@@ -18,7 +16,7 @@ namespace App.Template.Domain.Model
             get { return appliedEvents; }
         }
 
-        protected void OnApplied(IEvent @event)
+        protected void OnApplied(object @event)
         {
             appliedEvents.Add(@event);
             Version++;

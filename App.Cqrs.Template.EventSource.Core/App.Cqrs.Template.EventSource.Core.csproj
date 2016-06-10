@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6A7845BB-1F45-4DA7-AC4C-3D6DDF965A42}</ProjectGuid>
+    <ProjectGuid>{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>App.Cqrs.Template.ApplicationSvc</RootNamespace>
-    <AssemblyName>App.Cqrs.Template.ApplicationSvc</AssemblyName>
+    <RootNamespace>App.Cqrs.Template.EventSource.Core</RootNamespace>
+    <AssemblyName>App.Cqrs.Template.EventSource.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,41 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandler\CreateInventoryItemCommandHandler.cs" />
-    <Compile Include="CommandHandler\RenameInventoryItemCommandHandler.cs" />
-    <Compile Include="Command\CreateInventoryItemCommand.cs" />
-    <Compile Include="Command\RenameInventoryItemCommand.cs" />
-    <Compile Include="EventHandler\EmployeeUserAccountCreatedEventHandler.cs" />
-    <Compile Include="EventHandler\EmployeeCreatedEventHandler.cs" />
-    <Compile Include="CommandHandler\EmployeeCreateCommandHandler.cs" />
-    <Compile Include="Command\EmployeeCreateCommand.cs" />
-    <Compile Include="ReadModel\EmployeeUserAccountReadModel.cs" />
-    <Compile Include="ReadModel\EmployeeReadModel.cs" />
+    <Compile Include="Domain\IAggregateRootForEventSource.cs" />
+    <Compile Include="Exceptions\AggregateNotFoundException.cs" />
+    <Compile Include="Exceptions\ConcurrencyException.cs" />
+    <Compile Include="Extension\ReflectionDynamicObjectExtensions.cs" />
+    <Compile Include="Repository\EventStore.cs" />
+    <Compile Include="Domain\AggregateRootForEventSource.cs" />
+    <Compile Include="Repository\IEventStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryHandler\EmployeeByNameQueryHandler.cs" />
-    <Compile Include="QueryResult\EmployeeByNameQueryResult.cs" />
-    <Compile Include="Query\EmployeeByNameQuery.cs" />
+    <Compile Include="Repository\IRepositoryForEventSource.cs" />
+    <Compile Include="Repository\RepositoryForEventSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Cqrs.Core\App.Cqrs.Core.csproj">
       <Project>{9C92164B-6C8F-4F8E-926D-ADE94D2F97F6}</Project>
       <Name>App.Cqrs.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\App.Cqrs.Template.Core\App.Cqrs.Template.Core.csproj">
-      <Project>{D93A1639-31BC-44C5-8E7E-F528D481C45C}</Project>
-      <Name>App.Cqrs.Template.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\App.Cqrs.Template.EventSource.Core\App.Cqrs.Template.EventSource.Core.csproj">
-      <Project>{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}</Project>
-      <Name>App.Cqrs.Template.EventSource.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\App.Template.Domain\App.Template.Domain.csproj">
-      <Project>{0953BE64-29F6-42A0-B8E4-DA147E0187B9}</Project>
-      <Name>App.Template.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

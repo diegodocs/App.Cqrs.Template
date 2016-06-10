@@ -1,6 +1,6 @@
 ﻿using App.Cqrs.Core.Query;
 
-namespace App.Cqrs.Template.ApplicationSvc.Query
+namespace App.Cqrs.Template.Application.Query
 {
     public class EmployeeByNameQuery : IQuery
     {

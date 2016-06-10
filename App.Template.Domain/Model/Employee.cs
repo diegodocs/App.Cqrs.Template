@@ -1,4 +1,5 @@
-﻿using App.Template.Domain.Event;
+﻿using App.Cqrs.Template.Core.Domain;
+using App.Template.Domain.Event;
 using System;
 using System.Collections.Generic;
 

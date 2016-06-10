@@ -1,7 +1,6 @@
 ﻿using App.Cqrs.Core.Bus;
-using App.Cqrs.Template.ApplicationSvc.Command;
-using App.Cqrs.Template.ApplicationSvc.ReadModel;
-using App.Cqrs.Template.Core.Repository;
+using App.Cqrs.Template.Application.Command;
+using App.Cqrs.Template.EventSource.Core.Repository;
 using App.Cqrs.Template.Infrastructure.Bus;
 using App.Cqrs.Template.Test.Unit.Infrastructure;
 using App.Template.Domain.Model;
@@ -14,7 +13,7 @@ using System.Reflection;
 namespace App.Cqrs.Template.Test.Unit
 {
     [TestClass]
-    public class CreateEmployeeCommandHandlerTest
+    public class InventoryItemCommandHandlerTest
     {
         private IContainer container;
 
@@ -22,9 +21,11 @@ namespace App.Cqrs.Template.Test.Unit
         public void TestInitialize()
         {
             var builder = new ContainerBuilder();
-
+            builder.RegisterSource(new Autofac.Features.Variance.ContravariantRegistrationSource());
             builder.RegisterGeneric(typeof(RepositoryInMemory<>)).AsImplementedInterfaces().SingleInstance();
-            
+            builder.RegisterGeneric(typeof(RepositoryForEventSource<>)).AsImplementedInterfaces().SingleInstance();
+
+            builder.RegisterType<EventStore>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType(typeof(FakeBus)).AsImplementedInterfaces();
 
             var types = AppDomain
@@ -44,44 +45,42 @@ namespace App.Cqrs.Template.Test.Unit
         }
 
         [TestMethod]
-        public void Execute_EmployeeCreate_NewEmployeeCreated()
+        public void Execute_InvetoryItemCreate_NewCreated()
         {
-            // Arrange
-            var expectedNumberOfEmployee = 1;
-            var name = "Chuck Norris";
-            var command = new EmployeeCreateCommand(name, "Architecture", 10, 200);
+            // Arrange            
+            var expectedId = Guid.NewGuid();
+            var name = "Crunch Chocolate";
+            var command = new CreateInventoryItemCommand(expectedId, name);
 
             var bus = container.Resolve<IBus>();
-            var queryServiceEmployee = container.Resolve<IRepository<Employee>>();
+            var queryService = container.Resolve<IRepositoryForEventSource<InventoryItem>>();
 
             // Act
             bus.Dispatch(command);
 
-            // Assert
-            Assert.AreEqual(
-                expectedNumberOfEmployee,
-                queryServiceEmployee.FindList(x => x.Name == name).Count());
+            // Assert            
+            Assert.AreEqual(name, queryService.GetById(expectedId).Name);
 
-            Assert.AreEqual(name, queryServiceEmployee.All().Single().Name);
+
         }
 
         [TestMethod]
-        public void Execute_EmployeeCreate_NewReadModelCreated()
+        public void Execute_InventoryItemRename_Renamed()
         {
-            // Arrange
-            var expectedNumberOfEmployee = 1;
-            var name = "Jet Lee";
-            var command = new EmployeeCreateCommand(name, "Scrum Master", 8, 180);
+            // Arrange            
+            var expectedId = Guid.NewGuid();
+            var name = "Crunch Chocolate";
+            var newName = "Buballo Chiclete";
 
-            var queryServiceEmployee = container.Resolve<IRepository<EmployeeReadModel>>();
             var bus = container.Resolve<IBus>();
+            var queryService = container.Resolve<IRepositoryForEventSource<InventoryItem>>();
 
             // Act
-            bus.Dispatch(command);
+            bus.Dispatch(new CreateInventoryItemCommand(expectedId, name));
+            bus.Dispatch(new RenameInventoryItemCommand(expectedId, newName, 1));
 
-            // Assert
-            Assert.AreEqual(expectedNumberOfEmployee, queryServiceEmployee.FindList(x => x.Name == name).Count());
-            Assert.AreEqual(name, queryServiceEmployee.All().Single().Name);
+            // Assert            
+            Assert.AreEqual(newName, queryService.GetById(expectedId).Name);
         }
     }
 }

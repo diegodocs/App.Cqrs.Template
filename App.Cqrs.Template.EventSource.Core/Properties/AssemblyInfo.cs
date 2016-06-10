@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("App.Cqrs.Template.Application")]
+[assembly: AssemblyTitle("App.Cqrs.Template.EventSource.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("App.Cqrs.Template.Application")]
+[assembly: AssemblyProduct("App.Cqrs.Template.EventSource.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6a7845bb-1f45-4da7-ac4c-3d6ddf965a42")]
+[assembly: Guid("98d74c0b-0496-4cfc-809b-9e8e88c9b60f")]
 
 // Version information for an assembly consists of the following four values:
 //

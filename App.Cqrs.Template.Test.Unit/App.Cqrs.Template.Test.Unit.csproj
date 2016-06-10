@@ -57,7 +57,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CreateEmployeeCommandHandlerTest.cs" />
+    <Compile Include="InventoryItemCommandHandlerTest.cs" />
+    <Compile Include="EmployeeCommandHandlerTest.cs" />
     <Compile Include="Infrastructure\RepositoryInMemory.cs" />
     <Compile Include="Infrastructure\QueryServiceInMemory.cs" />
     <Compile Include="Infrastructure\PersistenceServiceInMemory.cs" />
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\App.Cqrs.Template.Core\App.Cqrs.Template.Core.csproj">
       <Project>{D93A1639-31BC-44C5-8E7E-F528D481C45C}</Project>
       <Name>App.Cqrs.Template.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.Cqrs.Template.EventSource.Core\App.Cqrs.Template.EventSource.Core.csproj">
+      <Project>{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}</Project>
+      <Name>App.Cqrs.Template.EventSource.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\App.Cqrs.Template.Infrastructure\App.Cqrs.Template.Infrastructure.csproj">
       <Project>{22DD806C-D3EA-4BA4-8013-9387CAC9025B}</Project>

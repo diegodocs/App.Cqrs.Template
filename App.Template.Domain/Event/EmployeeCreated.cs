@@ -13,7 +13,7 @@ namespace App.Template.Domain.Event
             this.CurrentLevel = level;
             this.CurrentSalary = salary;
         }
-
+        public int Version { get; set; }
         public Guid Id { get; protected set; }
         public string Name { get; protected set; }
         public string CurrentJob { get; protected set; }

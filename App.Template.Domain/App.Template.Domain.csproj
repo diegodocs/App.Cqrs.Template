@@ -48,7 +48,9 @@
     <Compile Include="Event\EmployeeJobChanged.cs" />
     <Compile Include="Event\EmployeeUserAccountCreated.cs" />
     <Compile Include="Event\EmployeeLevelUpgraded.cs" />
-    <Compile Include="Model\AggregateRoot.cs" />
+    <Compile Include="Event\InventoryItemCreated.cs" />
+    <Compile Include="Event\InventoryItemRenamed.cs" />
+    <Compile Include="Model\InventoryItem.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +62,10 @@
     <ProjectReference Include="..\App.Cqrs.Template.Core\App.Cqrs.Template.Core.csproj">
       <Project>{D93A1639-31BC-44C5-8E7E-F528D481C45C}</Project>
       <Name>App.Cqrs.Template.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.Cqrs.Template.EventSource.Core\App.Cqrs.Template.EventSource.Core.csproj">
+      <Project>{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}</Project>
+      <Name>App.Cqrs.Template.EventSource.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

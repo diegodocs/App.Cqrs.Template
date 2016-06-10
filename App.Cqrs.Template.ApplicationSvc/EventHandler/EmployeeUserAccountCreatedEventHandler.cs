@@ -1,10 +1,10 @@
 ﻿using App.Cqrs.Core.Event;
-using App.Cqrs.Template.ApplicationSvc.ReadModel;
+using App.Cqrs.Template.Application.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using App.Template.Domain.Event;
 using System.Linq;
 
-namespace App.Cqrs.Template.ApplicationSvc.EventHandler
+namespace App.Cqrs.Template.Application.EventHandler
 {
     public class EmployeeUserAccountCreatedEventHandler : IEventHandler<EmployeeCreated>, IEventHandler<IEvent>
     {

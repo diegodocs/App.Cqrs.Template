@@ -1,8 +1,8 @@
 ﻿using App.Cqrs.Core.Query;
-using App.Cqrs.Template.ApplicationSvc.ReadModel;
+using App.Cqrs.Template.Application.ReadModel;
 using System.Collections.Generic;
 
-namespace App.Cqrs.Template.ApplicationSvc.QueryResult
+namespace App.Cqrs.Template.Application.QueryResult
 {
     public class EmployeeByNameQueryResult : IQueryResult
     {

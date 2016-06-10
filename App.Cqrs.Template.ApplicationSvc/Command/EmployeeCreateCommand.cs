@@ -1,6 +1,6 @@
 ﻿using App.Cqrs.Core.Command;
 
-namespace App.Cqrs.Template.ApplicationSvc.Command
+namespace App.Cqrs.Template.Application.Command
 {
     public class EmployeeCreateCommand : ICommand
     {

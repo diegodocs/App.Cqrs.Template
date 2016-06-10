@@ -10,7 +10,7 @@ namespace App.Template.Domain.Event
             this.Level = level;
             this.Salary = salary;
         }
-
+        public int Version { get; set; }
         public string Job { get; protected set; }
         public int Level { get; protected set; }
         public decimal Salary { get; protected set; }

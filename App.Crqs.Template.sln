@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Cqrs.Template.Infrastructure", "App.Cqrs.Template.Infrastructure\App.Cqrs.Template.Infrastructure.csproj", "{22DD806C-D3EA-4BA4-8013-9387CAC9025B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Cqrs.Template.EventSource.Core", "App.Cqrs.Template.EventSource.Core\App.Cqrs.Template.EventSource.Core.csproj", "{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{22DD806C-D3EA-4BA4-8013-9387CAC9025B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DD806C-D3EA-4BA4-8013-9387CAC9025B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DD806C-D3EA-4BA4-8013-9387CAC9025B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D74C0B-0496-4CFC-809B-9E8E88C9B60F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +78,6 @@ Global
 		{D93A1639-31BC-44C5-8E7E-F528D481C45C} = {63B6438E-5447-49C9-BFE8-06D6DB832C19}
 		{4E3E5DBE-6F9B-45D7-B8B6-433759DD330A} = {36C4FB48-86F0-4B1F-A146-E782BE27D8ED}
 		{22DD806C-D3EA-4BA4-8013-9387CAC9025B} = {AF4844AD-82D4-4049-80A8-AE8D49494DAD}
+		{98D74C0B-0496-4CFC-809B-9E8E88C9B60F} = {63B6438E-5447-49C9-BFE8-06D6DB832C19}
 	EndGlobalSection
 EndGlobal

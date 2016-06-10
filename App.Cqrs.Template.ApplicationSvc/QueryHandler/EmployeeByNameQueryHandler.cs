@@ -1,11 +1,11 @@
 ﻿using App.Cqrs.Core.Query;
-using App.Cqrs.Template.ApplicationSvc.Query;
-using App.Cqrs.Template.ApplicationSvc.QueryResult;
-using App.Cqrs.Template.ApplicationSvc.ReadModel;
+using App.Cqrs.Template.Application.Query;
+using App.Cqrs.Template.Application.QueryResult;
+using App.Cqrs.Template.Application.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using System.Linq;
 
-namespace App.Cqrs.Template.ApplicationSvc.QueryHandler
+namespace App.Cqrs.Template.Application.QueryHandler
 {
     public class EmployeeByNameQueryHandler : IQueryHandler<EmployeeByNameQuery, EmployeeByNameQueryResult>
     {
