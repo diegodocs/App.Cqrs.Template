@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System;
-using App.Cqrs.Core.Bus;
+﻿using App.Cqrs.Core.Bus;
 using App.Cqrs.Core.Command;
 using App.Cqrs.Core.Event;
 using Autofac;
+using System;
+using System.Collections.Generic;
 
 namespace App.Cqrs.Template.Infrastructure.Bus
 {
@@ -30,7 +30,7 @@ namespace App.Cqrs.Template.Infrastructure.Bus
             }
 
             var eventHandlers = context.Resolve<IEnumerable<IEventHandler<TEvent>>>();
-            foreach (var handler in  eventHandlers)
+            foreach (var handler in eventHandlers)
             {
                 handler.Handle(@event);
             }

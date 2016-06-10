@@ -1,6 +1,4 @@
-﻿
-
-using App.Template.Domain.Event;
+﻿using App.Template.Domain.Event;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +10,6 @@ namespace App.Template.Domain.Model
         {
             var id = Guid.NewGuid();
             Apply(new EmployeeCreated(id, name, job, level, salary));
-            Apply(new EmployeeUserAccountCreated(id, name));
         }
 
         public string Name { get; protected set; }
@@ -20,11 +17,12 @@ namespace App.Template.Domain.Model
         public int CurrentLevel { get; protected set; }
         public decimal CurrentSalary { get; protected set; }
         public IEnumerable<JobHistory> JobHistoryList { get; protected set; }
+
         public class JobHistory
         {
-            public string Job { get;  set; }
-            public decimal Salary { get;  set; }
-            public int Level { get;  set; }
+            public string Job { get; set; }
+            public decimal Salary { get; set; }
+            public int Level { get; set; }
         }
 
         protected void Apply(EmployeeCreated @event)
@@ -35,21 +33,21 @@ namespace App.Template.Domain.Model
             this.CurrentLevel = @event.CurrentLevel;
             this.CurrentSalary = @event.CurrentSalary;
             this.JobHistoryList = new List<JobHistory>();
-            
+
             OnApplied(@event);
         }
 
         protected void Apply(EmployeeUserAccountCreated @event)
         {
             this.Id = Id;
-            this.Name = @event.Name;        
+            this.Name = @event.Name;
 
             OnApplied(@event);
         }
 
         public void UpgradeLevel()
         {
-            Apply(new EmployeeLevelUpgraded(this.CurrentLevel, this.CurrentSalary));            
+            Apply(new EmployeeLevelUpgraded(this.CurrentLevel, this.CurrentSalary));
         }
 
         protected void Apply(EmployeeLevelUpgraded @event)
@@ -61,7 +59,7 @@ namespace App.Template.Domain.Model
 
         public void ChangeJob(string job, int level, decimal salary)
         {
-            Apply(new EmployeeJobChanged(job,level,salary));
+            Apply(new EmployeeJobChanged(job, level, salary));
         }
 
         protected void Apply(EmployeeJobChanged @event)
@@ -69,11 +67,13 @@ namespace App.Template.Domain.Model
             this.CurrentJob = @event.Job;
             this.CurrentLevel = @event.Level;
             this.CurrentSalary = @event.Salary;
-            ((List<JobHistory>)this.JobHistoryList).Add(new JobHistory() {
+            ((List<JobHistory>)this.JobHistoryList).Add(new JobHistory()
+            {
                 Job = @event.Job,
                 Salary = @event.Salary,
-                Level = @event.Level});
-            
+                Level = @event.Level
+            });
+
             OnApplied(@event);
         }
     }

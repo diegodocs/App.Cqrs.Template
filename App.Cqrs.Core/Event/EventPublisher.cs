@@ -2,7 +2,7 @@
 
 namespace App.Cqrs.Core.Event
 {
-    public class EventPublisher : IEventPublisher 
+    public class EventPublisher : IEventPublisher
     {
         private readonly IEnumerable<IEventHandler<IEvent>> eventHandlerList;
 
@@ -13,8 +13,8 @@ namespace App.Cqrs.Core.Event
 
         public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
         {
-            foreach(var handler in eventHandlerList)
-                handler.Handle(@event);            
+            foreach (var handler in eventHandlerList)
+                handler.Handle(@event);
         }
-    }    
+    }
 }

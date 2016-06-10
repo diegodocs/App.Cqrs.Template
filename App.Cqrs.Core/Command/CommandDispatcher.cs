@@ -7,7 +7,7 @@ namespace App.Cqrs.Core.Command
         private readonly IContainer container;
 
         public CommandDispatcher(IContainer container)
-        {            
+        {
             this.container = container;
         }
 

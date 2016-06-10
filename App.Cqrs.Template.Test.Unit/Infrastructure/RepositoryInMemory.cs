@@ -9,23 +9,27 @@ namespace App.Cqrs.Template.Test.Unit.Infrastructure
 {
     public class RepositoryInMemory<TEntity> : IRepository<TEntity> where TEntity : IEntityBase
     {
-        private readonly List<TEntity> _repository = new List<TEntity>();        
+        private readonly List<TEntity> _repository = new List<TEntity>();
+
         public bool Update(TEntity instancia)
         {
             Delete(instancia.Id);
             return Insert(instancia);
-        }                
+        }
+
         public bool Delete(Guid id)
         {
             _repository.RemoveAll(x => x.Id == id);
             return true;
         }
+
         public bool Insert(TEntity instancia)
         {
-            _repository.Add(instancia);           
+            _repository.Add(instancia);
 
             return true;
         }
+
         public TEntity Find(Expression<Func<TEntity, bool>> expressao)
         {
             if (_repository.Any())

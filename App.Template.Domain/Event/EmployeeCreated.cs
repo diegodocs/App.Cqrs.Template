@@ -11,10 +11,10 @@ namespace App.Template.Domain.Event
             this.Name = name;
             this.CurrentJob = job;
             this.CurrentLevel = level;
-            this.CurrentSalary = salary;         
+            this.CurrentSalary = salary;
         }
 
-        public Guid Id{ get; protected set; }
+        public Guid Id { get; protected set; }
         public string Name { get; protected set; }
         public string CurrentJob { get; protected set; }
         public int CurrentLevel { get; protected set; }

@@ -1,4 +1,4 @@
-﻿namespace App.Cqrs.Core.Query   
+﻿namespace App.Cqrs.Core.Query
 {
     public interface IQueryResult
     {

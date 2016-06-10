@@ -1,7 +1,7 @@
 ﻿using App.Cqrs.Core.Query;
-using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.ApplicationSvc.Query;
 using App.Cqrs.Template.ApplicationSvc.QueryResult;
+using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using System.Linq;
 
@@ -20,7 +20,7 @@ namespace App.Cqrs.Template.ApplicationSvc.QueryHandler
         {
             var result = new EmployeeByNameQueryResult();
             result.EmployeeList = repositoryDTOEmployee.All().Where(x => x.Name == query.Name).ToList();
-            
+
             return result;
         }
     }

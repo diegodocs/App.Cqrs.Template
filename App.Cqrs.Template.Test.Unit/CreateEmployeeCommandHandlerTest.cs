@@ -1,19 +1,13 @@
 ﻿using App.Cqrs.Core.Bus;
-using App.Cqrs.Core.Command;
-using App.Cqrs.Core.Event;
 using App.Cqrs.Template.ApplicationSvc.Command;
-using App.Cqrs.Template.ApplicationSvc.CommandHandler;
 using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using App.Cqrs.Template.Infrastructure.Bus;
 using App.Cqrs.Template.Test.Unit.Infrastructure;
-using App.Template.Domain.Event;
 using App.Template.Domain.Model;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -30,7 +24,7 @@ namespace App.Cqrs.Template.Test.Unit
             var builder = new ContainerBuilder();
 
             builder.RegisterGeneric(typeof(RepositoryInMemory<>)).AsImplementedInterfaces().SingleInstance();
-            //builder.RegisterType<EventPublisher>().As<IEventPublisher>();
+            
             builder.RegisterType(typeof(FakeBus)).AsImplementedInterfaces();
 
             var types = AppDomain
@@ -57,18 +51,11 @@ namespace App.Cqrs.Template.Test.Unit
             var name = "Chuck Norris";
             var command = new EmployeeCreateCommand(name, "Architecture", 10, 200);
 
-            //var eventhandler = container.Resolve(typeof(IEnumerable<IEventHandler<IEvent>>));
-            //var eventhandler = container.Resolve<IEnumerable<IEventHandler<EmployeeCreated>>>();
-
             var bus = container.Resolve<IBus>();
-
             var queryServiceEmployee = container.Resolve<IRepository<Employee>>();
-            //var handler = container.Resolve<ICommandHandler<EmployeeCreateCommand>>();
 
             // Act
-            //handler.Execute(command);
             bus.Dispatch(command);
-
 
             // Assert
             Assert.AreEqual(
@@ -87,10 +74,10 @@ namespace App.Cqrs.Template.Test.Unit
             var command = new EmployeeCreateCommand(name, "Scrum Master", 8, 180);
 
             var queryServiceEmployee = container.Resolve<IRepository<EmployeeReadModel>>();
-            var handler = container.Resolve<ICommandHandler<EmployeeCreateCommand>>();
+            var bus = container.Resolve<IBus>();
 
             // Act
-            handler.Handle(command);
+            bus.Dispatch(command);
 
             // Assert
             Assert.AreEqual(expectedNumberOfEmployee, queryServiceEmployee.FindList(x => x.Name == name).Count());

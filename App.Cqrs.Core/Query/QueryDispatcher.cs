@@ -1,5 +1,4 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 
 namespace App.Cqrs.Core.Query
 {
@@ -8,7 +7,7 @@ namespace App.Cqrs.Core.Query
         private readonly IContainer container;
 
         public QueryDispatcher(IContainer container)
-        {            
+        {
             this.container = container;
         }
 
@@ -19,6 +18,5 @@ namespace App.Cqrs.Core.Query
             var handler = container.Resolve<IQueryHandler<TParameter, TResult>>();
             return handler.Retrieve(query);
         }
-
     }
 }

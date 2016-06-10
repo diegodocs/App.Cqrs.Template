@@ -1,6 +1,5 @@
-﻿
+﻿using App.Cqrs.Template.Core.Domain;
 using System;
-using App.Cqrs.Template.Core.Domain;
 
 namespace App.Cqrs.Template.ApplicationSvc.ReadModel
 {
@@ -10,6 +9,6 @@ namespace App.Cqrs.Template.ApplicationSvc.ReadModel
         public string Name { get; set; }
         public string CurrentJob { get; set; }
         public int CurrentLevel { get; set; }
-        public decimal CurrentSalary { get; set; }        
+        public decimal CurrentSalary { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using App.Cqrs.Core.Event;
+﻿using App.Cqrs.Core.Event;
 using App.Cqrs.Template.Core.Domain;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,7 @@ namespace App.Template.Domain.Model
 
         public Guid Id { get; protected set; }
 
-        public int Version { get; protected set; }          
-        
+        public int Version { get; protected set; }
 
         public IEnumerable<object> AppliedEvents
         {

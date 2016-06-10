@@ -9,6 +9,7 @@ namespace App.Cqrs.Template.ApplicationSvc.EventHandler
     public class EmployeeUserAccountCreatedEventHandler : IEventHandler<EmployeeCreated>, IEventHandler<IEvent>
     {
         private readonly IRepository<EmployeeUserAccountReadModel> employeeRepository;
+
         public EmployeeUserAccountCreatedEventHandler(IRepository<EmployeeUserAccountReadModel> employeeRepository)
         {
             this.employeeRepository = employeeRepository;

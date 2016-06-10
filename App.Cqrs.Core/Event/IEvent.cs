@@ -2,7 +2,7 @@
 
 namespace App.Cqrs.Core.Event
 {
-    public interface IEvent: IMessage
-    {        
+    public interface IEvent : IMessage
+    {
     }
 }

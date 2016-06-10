@@ -8,10 +8,10 @@ namespace App.Template.Domain.Event
         public EmployeeUserAccountCreated(Guid id, string name)
         {
             this.Id = id;
-            this.Name = name;            
+            this.Name = name;
         }
 
-        public Guid Id{ get; protected set; }
-        public string Name { get; protected set; }             
+        public Guid Id { get; protected set; }
+        public string Name { get; protected set; }
     }
 }

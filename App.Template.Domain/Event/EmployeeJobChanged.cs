@@ -9,7 +9,6 @@ namespace App.Template.Domain.Event
             this.Job = job;
             this.Level = level;
             this.Salary = salary;
-
         }
 
         public string Job { get; protected set; }

@@ -2,7 +2,7 @@
 
 namespace App.Cqrs.Core.Command
 {
-    public interface ICommand: IMessage
+    public interface ICommand : IMessage
     {
     }
 }

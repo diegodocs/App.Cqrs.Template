@@ -1,5 +1,4 @@
-﻿using System;
-using App.Cqrs.Core.Event;
+﻿using App.Cqrs.Core.Event;
 using App.Cqrs.Template.ApplicationSvc.ReadModel;
 using App.Cqrs.Template.Core.Repository;
 using App.Template.Domain.Event;
@@ -9,6 +8,7 @@ namespace App.Cqrs.Template.ApplicationSvc.EventHandler
     public class EmployeeCreatedEventHandler : IEventHandler<EmployeeCreated>, IEventHandler<IEvent>
     {
         private readonly IRepository<EmployeeReadModel> employeeRepository;
+
         public EmployeeCreatedEventHandler(IRepository<EmployeeReadModel> employeeRepository)
         {
             this.employeeRepository = employeeRepository;

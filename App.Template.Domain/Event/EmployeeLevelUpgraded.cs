@@ -8,7 +8,6 @@ namespace App.Template.Domain.Event
         {
             this.Level = level++;
             this.Salary = salary * 1.1m;
-
         }
 
         public int Level { get; protected set; }
