@@ -39,7 +39,13 @@ namespace App.Cqrs.Template.Test.Unit
                                                 && (n.Name.EndsWith("EventHandler") || n.Name.EndsWith("CommandHandler")))
                              .ToList();
 
-            types.ForEach(n => { builder.RegisterType(n).AsImplementedInterfaces(); });
+            types.ForEach(n =>
+            {
+                builder
+                .RegisterType(n)
+                .AsImplementedInterfaces()
+                .WithMetadata<IHandlerMetadata>(t => t.For(m => m.TypeName, n.Name));
+            });
 
             container = builder.Build();
         }

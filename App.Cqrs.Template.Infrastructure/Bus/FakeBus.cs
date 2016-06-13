@@ -13,10 +13,12 @@ namespace App.Cqrs.Template.Infrastructure.Bus
     public class FakeBus : IBus
     {
         private readonly IComponentContext context;
+        private readonly IEnumerable<Lazy<IEventHandler<IEvent>, IHandlerMetadata>> eventHandlers;
 
-        public FakeBus(IComponentContext context)
+        public FakeBus(IComponentContext context, IEnumerable<Lazy<IEventHandler<IEvent>, IHandlerMetadata>> eventHandlers)
         {
             this.context = context;
+            this.eventHandlers = eventHandlers;
         }
 
         public void Dispatch<TCommand>(TCommand command) where TCommand : ICommand
@@ -36,10 +38,11 @@ namespace App.Cqrs.Template.Infrastructure.Bus
             //Type EnumerableHandlers = typeof(IEnumerable<>);
             //var types = EnumerableHandlers.MakeGenericType(eventType);
 
-            var eventHandlers = context.Resolve<IEnumerable<IEventHandler<TEvent>>>();
+            //var eventHandlers = context.Resolve<IEnumerable<IEventHandler<TEvent>>>();
             //var eventHandlers = context.Resolve(types) as IEnumerable<IEventHandler<IEvent>>;
+            var handlers = eventHandlers.Where(t => t.Metadata.TypeName == @event.GetType().Name).Select(m=>m.Value).ToArray();
 
-            foreach (var handler in eventHandlers)
+            foreach (var handler in handlers)
             {
                 handler.Handle(@event);
             }
