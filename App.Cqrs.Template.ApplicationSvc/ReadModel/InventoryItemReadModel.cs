@@ -3,7 +3,7 @@ using System;
 
 namespace App.Cqrs.Template.Application.ReadModel
 {
-    public class EmployeeReadModel : IEntityBase
+    public class InventoryItemReadModel : IEntityBase
     {
         public Guid Id
         {
@@ -17,19 +17,7 @@ namespace App.Cqrs.Template.Application.ReadModel
             set;
         }
 
-        public string CurrentJob
-        {
-            get;
-            set;
-        }
-
-        public int CurrentLevel
-        {
-            get;
-            set;
-        }
-
-        public decimal CurrentSalary
+        public int Version
         {
             get;
             set;

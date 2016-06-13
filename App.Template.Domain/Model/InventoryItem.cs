@@ -10,17 +10,30 @@ namespace App.Template.Domain.Model
         public  bool Activated { get; protected set; }
         public InventoryItem()
         {
-        }       
+        }
 
         public InventoryItem(Guid id, string name)
         {
-            ApplyChange(new InventoryItemCreated(id, name));
+            ApplyChange(new InventoryItemCreated(id,name));
+        }
+
+        protected void ApplyChange(InventoryItemCreated @event)
+        {
+            this.Id = @event.Id;
+            this.Name = @event.Name;
+            this.Version = @event.Version;
+            OnApplied(@event);
         }
 
         public void ChangeName(string newName)
-        {
-            if (string.IsNullOrEmpty(newName)) throw new ArgumentException("newName");
+        {            
             ApplyChange(new InventoryItemRenamed(this.Id, newName));
+        }
+
+        protected void ApplyChange(InventoryItemRenamed @event)
+        {            
+            this.Name = @event.NewName;
+            OnApplied(@event);
         }
     }
 }

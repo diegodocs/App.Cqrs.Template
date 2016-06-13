@@ -14,7 +14,7 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
 
         public void Save(AggregateRootForEventSource aggregate, int expectedVersion)
         {
-            _storage.SaveEvents(aggregate.Id, aggregate.GetUncommittedChanges(), expectedVersion);
+            _storage.SaveEvents(aggregate.Id, aggregate.AppliedEvents, expectedVersion);
         }
 
         public T GetById(Guid id)

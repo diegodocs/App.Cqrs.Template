@@ -33,16 +33,10 @@ namespace App.Cqrs.Template.Infrastructure.Bus
             {
                 throw new ArgumentNullException(nameof(@event));
             }
-
-            //var eventType = typeof(IEventHandler<>).MakeGenericType(@event.GetType());
-            //Type EnumerableHandlers = typeof(IEnumerable<>);
-            //var types = EnumerableHandlers.MakeGenericType(eventType);
-
-            //var eventHandlers = context.Resolve<IEnumerable<IEventHandler<TEvent>>>();
-            //var eventHandlers = context.Resolve(types) as IEnumerable<IEventHandler<IEvent>>;
-            var handlers = eventHandlers.Where(t => t.Metadata.TypeName == @event.GetType().Name).Select(m=>m.Value).ToArray();
-
-            foreach (var handler in handlers)
+                        
+            var eventHandlers = context.ResolveNamed<IEnumerable<IEventHandler<IEvent>>>(@event.GetType().Name);
+            
+            foreach (var handler in eventHandlers)
             {
                 handler.Handle(@event);
             }

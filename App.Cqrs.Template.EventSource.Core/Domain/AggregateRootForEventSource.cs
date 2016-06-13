@@ -7,36 +7,38 @@ namespace App.Cqrs.Template.EventSource.Core.Domain
 {
     public abstract class AggregateRootForEventSource : IAggregateRootForEventSource
     {
-        private readonly List<IEvent> _changes = new List<IEvent>();
+        private readonly List<IEvent> appliedEvents = new List<IEvent>();
         
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
 
-        public IEnumerable<IEvent> GetUncommittedChanges()
+        public IEnumerable<IEvent> AppliedEvents
         {
-            return _changes;
+            get { return appliedEvents; }
         }
+
+        protected void OnApplied(IEvent @event)
+        {
+            appliedEvents.Add(@event);
+            Version++;
+        }        
 
         public void MarkChangesAsCommitted()
         {
-            _changes.Clear();
+            appliedEvents.Clear();
         }
 
-        public void LoadsFromHistory(IEnumerable<IEvent> history)
+        public void LoadsFromHistory(IEnumerable<IEvent> historyEvents)
         {
-            foreach (var e in history) ApplyChange(e, false);
+            foreach (var @event in historyEvents)
+                ApplyChange(@event, false);
         }
 
-        protected void ApplyChange(IEvent @event)
-        {
-            ApplyChange(@event, true);
-        }
-
-        // push atomic aggregate changes to local history for further processing (EventStore.SaveEvents)
         private void ApplyChange(IEvent @event, bool isNew)
         {
-            this.AsDynamic().Apply(@event);
-            if (isNew) _changes.Add(@event);
+            this.AsDynamic().ApplyChange(@event);
+            if (isNew)
+                appliedEvents.Add(@event);
         }
     }
 }

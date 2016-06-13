@@ -1,12 +1,17 @@
 ﻿using App.Cqrs.Core.Bus;
+using App.Cqrs.Core.Event;
 using App.Cqrs.Template.Application.Command;
+using App.Cqrs.Template.Application.CommandHandler;
+using App.Cqrs.Template.Application.EventHandler;
 using App.Cqrs.Template.EventSource.Core.Repository;
 using App.Cqrs.Template.Infrastructure.Bus;
 using App.Cqrs.Template.Test.Unit.Infrastructure;
+using App.Template.Domain.Event;
 using App.Template.Domain.Model;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -24,28 +29,13 @@ namespace App.Cqrs.Template.Test.Unit
             builder.RegisterSource(new Autofac.Features.Variance.ContravariantRegistrationSource());
             builder.RegisterGeneric(typeof(RepositoryInMemory<>)).AsImplementedInterfaces().SingleInstance();
             builder.RegisterGeneric(typeof(RepositoryForEventSource<>)).AsImplementedInterfaces().SingleInstance();
-
             builder.RegisterType<EventStore>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType(typeof(FakeBus)).AsImplementedInterfaces();
-
-            var types = AppDomain
-                            .CurrentDomain
-                            .GetAssemblies()
-                            .SelectMany(n => n.GetReferencedAssemblies())
-                            .Select(n => Assembly.Load(n))
-                            .SelectMany(n => n.GetTypes())
-                                            .Where(n => n.Namespace != null
-                                            && n.Namespace.StartsWith("App.")
-                                                && (n.Name.EndsWith("EventHandler") || n.Name.EndsWith("CommandHandler")))
-                             .ToList();
-
-            types.ForEach(n =>
-            {
-                builder
-                .RegisterType(n)
-                .AsImplementedInterfaces()
-                .WithMetadata<IHandlerMetadata>(t => t.For(m => m.TypeName, n.Name));
-            });
+            builder.RegisterType<CreateInventoryItemCommandHandler>().AsImplementedInterfaces();
+            builder.RegisterType<EmployeeCreateCommandHandler>().AsImplementedInterfaces();
+            builder.RegisterType<RenameInventoryItemCommandHandler>().AsImplementedInterfaces();
+            builder.RegisterType<EmployeeUserAccountCreatedEventHandler>().Named<IEventHandler<IEvent>>("EmployeeCreated");
+            builder.RegisterType<InventoryItemCreatedEventHandler>().Named<IEventHandler<IEvent>>("InventoryItemCreated");
 
             container = builder.Build();
         }

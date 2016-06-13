@@ -52,12 +52,14 @@
     <Compile Include="EventHandler\EmployeeCreatedEventHandler.cs" />
     <Compile Include="CommandHandler\EmployeeCreateCommandHandler.cs" />
     <Compile Include="Command\EmployeeCreateCommand.cs" />
+    <Compile Include="EventHandler\InventoryItemCreatedEventHandler.cs" />
     <Compile Include="ReadModel\EmployeeUserAccountReadModel.cs" />
     <Compile Include="ReadModel\EmployeeReadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandler\EmployeeByNameQueryHandler.cs" />
     <Compile Include="QueryResult\EmployeeByNameQueryResult.cs" />
     <Compile Include="Query\EmployeeByNameQuery.cs" />
+    <Compile Include="ReadModel\InventoryItemReadModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Cqrs.Core\App.Cqrs.Core.csproj">
