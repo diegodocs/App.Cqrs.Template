@@ -19,10 +19,11 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
 
         public T GetById(Guid id)
         {
-            var obj = new T();
-            var e = _storage.GetEventsForAggregate(id);
-            obj.LoadsFromHistory(e);
-            return obj;
+            var instance = new T();
+            var events = _storage.GetEventsForAggregate(id);
+            instance.LoadsFromHistory(events);
+            instance.MarkChangesAsCommitted();
+            return instance;
         }
     }
 }

@@ -16,8 +16,9 @@ namespace App.Cqrs.Template.Application.CommandHandler
 
         public void Handle(RenameInventoryItemCommand command)
         {
-            var item = new InventoryItem(command.InventoryItemId, command.NewName);
-            inventoryRepository.Save(item, 1);
+            var item = inventoryRepository.GetById(command.InventoryItemId);
+            item.ChangeName(command.NewName);
+            inventoryRepository.Save(item, command.OriginalVersion);
         }
     }
 }

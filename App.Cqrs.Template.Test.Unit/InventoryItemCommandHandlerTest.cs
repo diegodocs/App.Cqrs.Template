@@ -3,6 +3,8 @@ using App.Cqrs.Core.Event;
 using App.Cqrs.Template.Application.Command;
 using App.Cqrs.Template.Application.CommandHandler;
 using App.Cqrs.Template.Application.EventHandler;
+using App.Cqrs.Template.Application.ReadModel;
+using App.Cqrs.Template.Core.Repository;
 using App.Cqrs.Template.EventSource.Core.Repository;
 using App.Cqrs.Template.Infrastructure.Bus;
 using App.Cqrs.Template.Test.Unit.Infrastructure;
@@ -10,6 +12,7 @@ using App.Template.Domain.Model;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace App.Cqrs.Template.Test.Unit
 {
@@ -32,6 +35,7 @@ namespace App.Cqrs.Template.Test.Unit
             builder.RegisterType<RenameInventoryItemCommandHandler>().AsImplementedInterfaces();
             builder.RegisterType<EmployeeUserAccountCreatedEventHandler>().Named<IEventHandler<IEvent>>("EmployeeCreated");
             builder.RegisterType<InventoryItemCreatedEventHandler>().Named<IEventHandler<IEvent>>("InventoryItemCreated");
+            builder.RegisterType<InventoryItemRenamedEventHandler>().Named<IEventHandler<IEvent>>("InventoryItemRenamed");
 
             container = builder.Build();
         }
@@ -58,12 +62,14 @@ namespace App.Cqrs.Template.Test.Unit
         public void Execute_InventoryItemRename_Renamed()
         {
             // Arrange
+            var expectedNumberOfObjects = 1;
             var expectedId = Guid.NewGuid();
             var name = "Crunch Chocolate";
             var newName = "Buballo Chiclete";
 
             var bus = container.Resolve<IBus>();
             var queryService = container.Resolve<IRepositoryForEventSource<InventoryItem>>();
+            var queryServiceReadModel = container.Resolve<IRepository<InventoryItemReadModel>>();
 
             // Act
             bus.Dispatch(new CreateInventoryItemCommand(expectedId, name));
@@ -71,6 +77,8 @@ namespace App.Cqrs.Template.Test.Unit
 
             // Assert
             Assert.AreEqual(newName, queryService.GetById(expectedId).Name);
+            Assert.AreEqual(expectedNumberOfObjects, queryServiceReadModel.All().Count());
+            Assert.AreEqual(newName, queryServiceReadModel.All().Single().Name);
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="CommandHandler\EmployeeCreateCommandHandler.cs" />
     <Compile Include="Command\EmployeeCreateCommand.cs" />
     <Compile Include="EventHandler\InventoryItemCreatedEventHandler.cs" />
+    <Compile Include="EventHandler\InventoryItemRenamedEventHandler.cs" />
     <Compile Include="ReadModel\EmployeeUserAccountReadModel.cs" />
     <Compile Include="ReadModel\EmployeeReadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
