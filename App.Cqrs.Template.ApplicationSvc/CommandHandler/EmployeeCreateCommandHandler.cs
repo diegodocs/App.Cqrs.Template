@@ -10,6 +10,7 @@ namespace App.Cqrs.Template.Application.CommandHandler
     {
         private readonly IRepositoryPersistenceService<Employee> employeeRepository;
         private readonly IEventPublisher eventPublisher;
+
         public EmployeeCreateCommandHandler(IRepositoryPersistenceService<Employee> employeeRepository, IEventPublisher eventPublisher)
         {
             this.employeeRepository = employeeRepository;

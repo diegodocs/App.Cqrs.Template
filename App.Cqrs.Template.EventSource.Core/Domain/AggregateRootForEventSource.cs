@@ -8,7 +8,7 @@ namespace App.Cqrs.Template.EventSource.Core.Domain
     public abstract class AggregateRootForEventSource : IAggregateRootForEventSource
     {
         private readonly List<IEvent> appliedEvents = new List<IEvent>();
-        
+
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
 
@@ -21,7 +21,7 @@ namespace App.Cqrs.Template.EventSource.Core.Domain
         {
             appliedEvents.Add(@event);
             Version++;
-        }        
+        }
 
         public void MarkChangesAsCommitted()
         {

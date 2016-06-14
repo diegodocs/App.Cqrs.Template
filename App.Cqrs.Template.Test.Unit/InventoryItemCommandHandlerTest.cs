@@ -39,7 +39,7 @@ namespace App.Cqrs.Template.Test.Unit
         [TestMethod]
         public void Execute_InvetoryItemCreate_NewCreated()
         {
-            // Arrange            
+            // Arrange
             var expectedId = Guid.NewGuid();
             var name = "Crunch Chocolate";
             var command = new CreateInventoryItemCommand(expectedId, name);
@@ -50,16 +50,14 @@ namespace App.Cqrs.Template.Test.Unit
             // Act
             bus.Dispatch(command);
 
-            // Assert            
+            // Assert
             Assert.AreEqual(name, queryService.GetById(expectedId).Name);
-
-
         }
 
         [TestMethod]
         public void Execute_InventoryItemRename_Renamed()
         {
-            // Arrange            
+            // Arrange
             var expectedId = Guid.NewGuid();
             var name = "Crunch Chocolate";
             var newName = "Buballo Chiclete";
@@ -71,7 +69,7 @@ namespace App.Cqrs.Template.Test.Unit
             bus.Dispatch(new CreateInventoryItemCommand(expectedId, name));
             bus.Dispatch(new RenameInventoryItemCommand(expectedId, newName, 1));
 
-            // Assert            
+            // Assert
             Assert.AreEqual(newName, queryService.GetById(expectedId).Name);
         }
     }

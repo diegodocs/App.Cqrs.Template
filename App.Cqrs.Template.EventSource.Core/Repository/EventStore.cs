@@ -39,7 +39,7 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
             {
                 eventDescriptors = new List<EventDescriptor>();
                 _current.Add(aggregateId, eventDescriptors);
-            }            
+            }
 
             var i = expectedVersion;
 
@@ -51,6 +51,7 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
                 eventPublisher.Publish(@event);
             }
         }
+
         public List<IEvent> GetEventsForAggregate(Guid aggregateId)
         {
             List<EventDescriptor> eventDescriptors;

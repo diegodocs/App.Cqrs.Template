@@ -9,7 +9,9 @@ namespace App.Cqrs.Template.EventSource.Core.Domain
         Guid Id { get; }
         int Version { get; }
         IEnumerable<IEvent> AppliedEvents { get; }
+
         void LoadsFromHistory(IEnumerable<IEvent> history);
+
         void MarkChangesAsCommitted();
     }
 }

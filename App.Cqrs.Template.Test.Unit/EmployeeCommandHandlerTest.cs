@@ -10,9 +10,7 @@ using App.Cqrs.Template.Test.Unit.Infrastructure;
 using App.Template.Domain.Model;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Linq;
-using System.Reflection;
 
 namespace App.Cqrs.Template.Test.Unit
 {
@@ -28,27 +26,12 @@ namespace App.Cqrs.Template.Test.Unit
 
             builder.RegisterGeneric(typeof(RepositoryInMemory<>)).AsImplementedInterfaces().SingleInstance();
             builder.RegisterType(typeof(FakeBus)).AsImplementedInterfaces();
-
-            //var types = AppDomain
-            //                .CurrentDomain
-            //                .GetAssemblies()
-            //                .SelectMany(n => n.GetReferencedAssemblies())
-            //                .Select(n => Assembly.Load(n))
-            //                .SelectMany(n => n.GetTypes())
-            //                                .Where(n => n.Namespace != null
-            //                                && n.Namespace.StartsWith("App.")
-            //                                    && (n.Name.EndsWith("EventHandler") || n.Name.EndsWith("CommandHandler")))
-            //                 .ToList();
-
-            //types.ForEach(n => { builder.RegisterType(n).AsImplementedInterfaces(); });
-
             builder.RegisterType<CreateInventoryItemCommandHandler>().AsImplementedInterfaces();
             builder.RegisterType<EmployeeCreateCommandHandler>().AsImplementedInterfaces();
             builder.RegisterType<RenameInventoryItemCommandHandler>().AsImplementedInterfaces();
             builder.RegisterType<EmployeeCreatedEventHandler>().Named<IEventHandler<IEvent>>("EmployeeCreated");
             builder.RegisterType<EmployeeUserAccountCreatedEventHandler>().Named<IEventHandler<IEvent>>("EmployeeCreated");
             builder.RegisterType<InventoryItemCreatedEventHandler>().Named<IEventHandler<IEvent>>("InventoryItemCreated");
-
 
             container = builder.Build();
         }

@@ -5,16 +5,17 @@ using System;
 namespace App.Template.Domain.Model
 {
     public class InventoryItem : AggregateRootForEventSource
-    {        
-        public  string Name { get; protected set; }
-        public  bool Activated { get; protected set; }
+    {
+        public string Name { get; protected set; }
+        public bool Activated { get; protected set; }
+
         public InventoryItem()
         {
         }
 
         public InventoryItem(Guid id, string name)
         {
-            ApplyChange(new InventoryItemCreated(id,name));
+            ApplyChange(new InventoryItemCreated(id, name));
         }
 
         protected void ApplyChange(InventoryItemCreated @event)
@@ -26,12 +27,12 @@ namespace App.Template.Domain.Model
         }
 
         public void ChangeName(string newName)
-        {            
+        {
             ApplyChange(new InventoryItemRenamed(this.Id, newName));
         }
 
         protected void ApplyChange(InventoryItemRenamed @event)
-        {            
+        {
             this.Name = @event.NewName;
             OnApplied(@event);
         }

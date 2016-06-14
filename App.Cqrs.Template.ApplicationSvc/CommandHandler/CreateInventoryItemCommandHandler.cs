@@ -8,6 +8,7 @@ namespace App.Cqrs.Template.Application.CommandHandler
     public class CreateInventoryItemCommandHandler : ICommandHandler<CreateInventoryItemCommand>
     {
         private readonly IRepositoryForEventSource<InventoryItem> inventoryRepository;
+
         public CreateInventoryItemCommandHandler(IRepositoryForEventSource<InventoryItem> inventoryRepository)
         {
             this.inventoryRepository = inventoryRepository;

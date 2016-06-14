@@ -8,6 +8,7 @@ namespace App.Cqrs.Template.Application.CommandHandler
     public class RenameInventoryItemCommandHandler : ICommandHandler<RenameInventoryItemCommand>
     {
         private readonly IRepositoryForEventSource<InventoryItem> inventoryRepository;
+
         public RenameInventoryItemCommandHandler(IRepositoryForEventSource<InventoryItem> inventoryRepository)
         {
             this.inventoryRepository = inventoryRepository;

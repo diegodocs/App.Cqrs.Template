@@ -10,6 +10,7 @@ namespace App.Template.Domain.Event
             this.Id = id;
             this.Name = name;
         }
+
         public int Version { get; set; }
         public Guid Id { get; protected set; }
         public string Name { get; protected set; }

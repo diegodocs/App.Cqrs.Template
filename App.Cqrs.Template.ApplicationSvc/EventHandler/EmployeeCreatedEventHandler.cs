@@ -8,6 +8,7 @@ namespace App.Cqrs.Template.Application.EventHandler
     public class EmployeeCreatedEventHandler : IEventHandler<EmployeeCreated>, IEventHandler<IEvent>
     {
         private readonly IRepository<EmployeeReadModel> employeeRepository;
+
         public EmployeeCreatedEventHandler(IRepository<EmployeeReadModel> employeeRepository)
         {
             this.employeeRepository = employeeRepository;
