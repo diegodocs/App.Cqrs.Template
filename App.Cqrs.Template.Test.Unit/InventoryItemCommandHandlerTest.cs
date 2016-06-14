@@ -6,14 +6,10 @@ using App.Cqrs.Template.Application.EventHandler;
 using App.Cqrs.Template.EventSource.Core.Repository;
 using App.Cqrs.Template.Infrastructure.Bus;
 using App.Cqrs.Template.Test.Unit.Infrastructure;
-using App.Template.Domain.Event;
 using App.Template.Domain.Model;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace App.Cqrs.Template.Test.Unit
 {

@@ -39,11 +39,7 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
             {
                 eventDescriptors = new List<EventDescriptor>();
                 _current.Add(aggregateId, eventDescriptors);
-            }
-            else if (eventDescriptors[eventDescriptors.Count - 1].Version != expectedVersion && expectedVersion != -1)
-            {
-                throw new ConcurrencyException();
-            }
+            }            
 
             var i = expectedVersion;
 
