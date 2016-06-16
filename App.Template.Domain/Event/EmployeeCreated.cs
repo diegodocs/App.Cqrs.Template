@@ -7,11 +7,11 @@ namespace App.Template.Domain.Event
     {
         public EmployeeCreated(Guid id, string name, string job, int level, decimal salary)
         {
-            this.Id = id;
-            this.Name = name;
-            this.CurrentJob = job;
-            this.CurrentLevel = level;
-            this.CurrentSalary = salary;
+            Id = id;
+            Name = name;
+            CurrentJob = job;
+            CurrentLevel = level;
+            CurrentSalary = salary;
         }
 
         public int Version { get; set; }

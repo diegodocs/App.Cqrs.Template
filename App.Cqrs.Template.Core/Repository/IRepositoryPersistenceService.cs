@@ -3,7 +3,7 @@ using System;
 
 namespace App.Cqrs.Template.Core.Repository
 {
-    public interface IRepositoryPersistenceService<TEntity> where TEntity : IEntityBase
+    public interface IRepositoryPersistenceService<in TEntity> where TEntity : IEntityBase
     {
         bool Insert(TEntity instance);
 

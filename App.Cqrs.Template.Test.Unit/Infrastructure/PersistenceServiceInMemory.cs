@@ -7,7 +7,7 @@ namespace App.Cqrs.Template.Test.Unit.Infrastructure
 {
     public class PersistenceServiceInMemory<TEntity> : IRepositoryPersistenceService<TEntity> where TEntity : IEntityBase
     {
-        private readonly List<TEntity> _repository = new List<TEntity>();
+        public readonly List<TEntity> Repository = new List<TEntity>();
 
         public bool Update(TEntity instancia)
         {
@@ -17,13 +17,13 @@ namespace App.Cqrs.Template.Test.Unit.Infrastructure
 
         public bool Delete(Guid id)
         {
-            _repository.RemoveAll(x => x.Id == id);
+            Repository.RemoveAll(x => x.Id == id);
             return true;
         }
 
         public bool Insert(TEntity instancia)
         {
-            _repository.Add(instancia);
+            Repository.Add(instancia);
 
             return true;
         }

@@ -9,7 +9,7 @@ namespace App.Cqrs.Template.Test.Unit.Infrastructure
 {
     public class RepositoryInMemory<TEntity> : IRepository<TEntity> where TEntity : IEntityBase
     {
-        private readonly List<TEntity> _repository = new List<TEntity>();
+        public readonly List<TEntity> Repository = new List<TEntity>();
 
         public bool Update(TEntity instancia)
         {
@@ -19,37 +19,34 @@ namespace App.Cqrs.Template.Test.Unit.Infrastructure
 
         public bool Delete(Guid id)
         {
-            _repository.RemoveAll(x => x.Id == id);
+            Repository.RemoveAll(x => x.Id == id);
             return true;
         }
 
         public bool Insert(TEntity instancia)
         {
-            _repository.Add(instancia);
+            Repository.Add(instancia);
 
             return true;
         }
 
         public TEntity Find(Expression<Func<TEntity, bool>> expressao)
         {
-            if (_repository.Any())
+            if (Repository.Any())
             {
-                return _repository.AsQueryable().First(expressao);
+                return Repository.AsQueryable().First(expressao);
             }
-            else
-            {
-                return default(TEntity);
-            }
+            return default(TEntity);
         }
 
         public IEnumerable<TEntity> All()
         {
-            return _repository;
+            return Repository;
         }
 
         public IEnumerable<TEntity> FindList(Expression<Func<TEntity, bool>> expressao)
         {
-            return _repository.AsQueryable().Where(expressao);
+            return Repository.AsQueryable().Where(expressao);
         }
 
         public void Dispose()

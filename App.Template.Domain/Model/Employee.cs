@@ -28,33 +28,33 @@ namespace App.Template.Domain.Model
 
         protected void Apply(EmployeeCreated @event)
         {
-            this.Id = Id;
-            this.Name = @event.Name;
-            this.CurrentJob = @event.CurrentJob;
-            this.CurrentLevel = @event.CurrentLevel;
-            this.CurrentSalary = @event.CurrentSalary;
-            this.JobHistoryList = new List<JobHistory>();
+            Id = Id;
+            Name = @event.Name;
+            CurrentJob = @event.CurrentJob;
+            CurrentLevel = @event.CurrentLevel;
+            CurrentSalary = @event.CurrentSalary;
+            JobHistoryList = new List<JobHistory>();
 
             OnApplied(@event);
         }
 
         protected void Apply(EmployeeUserAccountCreated @event)
         {
-            this.Id = Id;
-            this.Name = @event.Name;
+            Id = Id;
+            Name = @event.Name;
 
             OnApplied(@event);
         }
 
         public void UpgradeLevel()
         {
-            Apply(new EmployeeLevelUpgraded(this.CurrentLevel, this.CurrentSalary));
+            Apply(new EmployeeLevelUpgraded(CurrentLevel, CurrentSalary));
         }
 
         protected void Apply(EmployeeLevelUpgraded @event)
         {
-            this.CurrentLevel = @event.Level;
-            this.CurrentSalary = @event.Salary;
+            CurrentLevel = @event.Level;
+            CurrentSalary = @event.Salary;
             OnApplied(@event);
         }
 
@@ -65,10 +65,10 @@ namespace App.Template.Domain.Model
 
         protected void Apply(EmployeeJobChanged @event)
         {
-            this.CurrentJob = @event.Job;
-            this.CurrentLevel = @event.Level;
-            this.CurrentSalary = @event.Salary;
-            ((List<JobHistory>)this.JobHistoryList).Add(new JobHistory()
+            CurrentJob = @event.Job;
+            CurrentLevel = @event.Level;
+            CurrentSalary = @event.Salary;
+            ((List<JobHistory>)JobHistoryList).Add(new JobHistory()
             {
                 Job = @event.Job,
                 Salary = @event.Salary,

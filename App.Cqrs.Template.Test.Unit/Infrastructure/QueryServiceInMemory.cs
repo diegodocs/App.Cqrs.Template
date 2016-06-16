@@ -9,28 +9,21 @@ namespace App.Cqrs.Template.Test.Unit.Infrastructure
 {
     public class QueryServiceInMemory<TEntity> : IRepositoryQueryService<TEntity> where TEntity : IEntityBase
     {
-        private readonly List<TEntity> _repository = new List<TEntity>();
+        protected readonly List<TEntity> Repository = new List<TEntity>();
 
         public TEntity Find(Expression<Func<TEntity, bool>> expressao)
         {
-            if (_repository.Any())
-            {
-                return _repository.AsQueryable().First(expressao);
-            }
-            else
-            {
-                return default(TEntity);
-            }
+            return Repository.Any() ? Repository.AsQueryable().First(expressao) : default(TEntity);
         }
 
         public IEnumerable<TEntity> All()
         {
-            return _repository;
+            return Repository;
         }
 
         public IEnumerable<TEntity> FindList(Expression<Func<TEntity, bool>> expressao)
         {
-            return _repository.AsQueryable().Where(expressao);
+            return Repository.AsQueryable().Where(expressao);
         }
 
         public void Dispose()

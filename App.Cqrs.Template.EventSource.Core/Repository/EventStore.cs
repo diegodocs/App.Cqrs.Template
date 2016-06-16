@@ -10,11 +10,11 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
     {
         private readonly IEventPublisher eventPublisher;
 
-        private struct EventDescriptor
+        public struct EventDescriptor
         {
             public readonly IEvent EventData;
             public readonly Guid Id;
-            public readonly int Version;
+            public int Version;
 
             public EventDescriptor(Guid id, IEvent eventData, int version)
             {
@@ -29,16 +29,16 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
             eventPublisher = publisher;
         }
 
-        private readonly Dictionary<Guid, List<EventDescriptor>> _current = new Dictionary<Guid, List<EventDescriptor>>();
+        public readonly Dictionary<Guid, List<EventDescriptor>> Current = new Dictionary<Guid, List<EventDescriptor>>();
 
         public void SaveEvents(Guid aggregateId, IEnumerable<IEvent> events, int expectedVersion)
         {
             List<EventDescriptor> eventDescriptors;
 
-            if (!_current.TryGetValue(aggregateId, out eventDescriptors))
+            if (!Current.TryGetValue(aggregateId, out eventDescriptors))
             {
                 eventDescriptors = new List<EventDescriptor>();
-                _current.Add(aggregateId, eventDescriptors);
+                Current.Add(aggregateId, eventDescriptors);
             }
 
             var i = expectedVersion;
@@ -55,7 +55,7 @@ namespace App.Cqrs.Template.EventSource.Core.Repository
         public List<IEvent> GetEventsForAggregate(Guid aggregateId)
         {
             List<EventDescriptor> eventDescriptors;
-            if (!_current.TryGetValue(aggregateId, out eventDescriptors))
+            if (!Current.TryGetValue(aggregateId, out eventDescriptors))
             {
                 throw new AggregateNotFoundException();
             }

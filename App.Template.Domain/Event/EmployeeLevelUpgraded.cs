@@ -6,8 +6,8 @@ namespace App.Template.Domain.Event
     {
         public EmployeeLevelUpgraded(int level, decimal salary)
         {
-            this.Level = level++;
-            this.Salary = salary * 1.1m;
+            Level = level++;
+            Salary = salary * 1.1m;
         }
 
         public int Version { get; set; }

@@ -7,8 +7,8 @@ namespace App.Template.Domain.Event
     {
         public EmployeeUserAccountCreated(Guid id, string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+            Name = name;
         }
 
         public int Version { get; set; }

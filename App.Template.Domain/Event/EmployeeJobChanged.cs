@@ -6,9 +6,9 @@ namespace App.Template.Domain.Event
     {
         public EmployeeJobChanged(string job, int level, decimal salary)
         {
-            this.Job = job;
-            this.Level = level;
-            this.Salary = salary;
+            Job = job;
+            Level = level;
+            Salary = salary;
         }
 
         public int Version { get; set; }

@@ -11,10 +11,7 @@ namespace App.Cqrs.Template.Core.Domain
 
         public int Version { get; protected set; }
 
-        public IEnumerable<object> AppliedEvents
-        {
-            get { return appliedEvents; }
-        }
+        public IEnumerable<object> AppliedEvents => appliedEvents;
 
         protected void OnApplied(object @event)
         {

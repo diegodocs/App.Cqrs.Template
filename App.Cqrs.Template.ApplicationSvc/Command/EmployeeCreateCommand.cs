@@ -6,10 +6,10 @@ namespace App.Cqrs.Template.Application.Command
     {
         public EmployeeCreateCommand(string name, string job, int level, decimal salary)
         {
-            this.Name = name;
-            this.Job = job;
-            this.Level = level;
-            this.Salary = salary;
+            Name = name;
+            Job = job;
+            Level = level;
+            Salary = salary;
         }
 
         public string Name { get; protected set; }

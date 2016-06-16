@@ -7,8 +7,8 @@
     <ProjectGuid>{6A7845BB-1F45-4DA7-AC4C-3D6DDF965A42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>App.Cqrs.Template.ApplicationSvc</RootNamespace>
-    <AssemblyName>App.Cqrs.Template.ApplicationSvc</AssemblyName>
+    <RootNamespace>App.Cqrs.Template.Application</RootNamespace>
+    <AssemblyName>App.Cqrs.Template.Application</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

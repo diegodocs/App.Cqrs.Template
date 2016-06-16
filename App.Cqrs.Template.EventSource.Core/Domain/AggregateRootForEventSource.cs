@@ -12,10 +12,7 @@ namespace App.Cqrs.Template.EventSource.Core.Domain
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
 
-        public IEnumerable<IEvent> AppliedEvents
-        {
-            get { return appliedEvents; }
-        }
+        public IEnumerable<IEvent> AppliedEvents => appliedEvents;
 
         protected void OnApplied(IEvent @event)
         {

@@ -20,20 +20,20 @@ namespace App.Template.Domain.Model
 
         protected void ApplyChange(InventoryItemCreated @event)
         {
-            this.Id = @event.Id;
-            this.Name = @event.Name;
-            this.Version = @event.Version;
+            Id = @event.Id;
+            Name = @event.Name;
+            Version = @event.Version;
             OnApplied(@event);
         }
 
         public void ChangeName(string newName)
         {
-            ApplyChange(new InventoryItemRenamed(this.Id, newName));
+            ApplyChange(new InventoryItemRenamed(Id, newName));
         }
 
         protected void ApplyChange(InventoryItemRenamed @event)
         {
-            this.Name = @event.NewName;
+            Name = @event.NewName;
             OnApplied(@event);
         }
     }
