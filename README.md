@@ -1,31 +1,31 @@
 # App.Crqs.Template
 
-## Resumo
+## Summary
 
-O projeto App.Crqs.Template inclui conceitos de:
+This project App.Crqs.Template cover concepts about:
  
- - Arquitetura baseada em eventos (http://en.wikipedia.org/wiki/Event-driven_architecture)
- - Domínio persistindo eventos por Martin Fowler (http://martinfowler.com/eaaDev/EventSourcing.html)
+ - Event Driven Architecture - (http://en.wikipedia.org/wiki/Event-driven_architecture)
+ - Event Sourcing with Martin Fowler (http://martinfowler.com/eaaDev/EventSourcing.html)
  - CQRS (http://www.codeproject.com/Articles/555855/Introduction-to-CQRS)
- - Injeção de Dependencia (http://en.wikipedia.org/wiki/Dependency_injection)
- - Baixo Acoplamento (http://en.wikipedia.org/wiki/Loose_coupling)
- - Arquitetura Cebola (http://jeffreypalermo.com/blog/the-onion-architecture-part-1/)
- - Principios Solid (http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)
- - Preocupações multi-camadas (http://en.wikipedia.org/wiki/Cross-cutting_concern)
+ - Dependency Injection (http://en.wikipedia.org/wiki/Dependency_injection)
+ - Loose Coupling (http://en.wikipedia.org/wiki/Loose_coupling)
+ - Onion Architecture (http://jeffreypalermo.com/blog/the-onion-architecture-part-1/)
+ - SOLID Principles (http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)
+ - Cross Cutting Concerns: (http://en.wikipedia.org/wiki/Cross-cutting_concern)
  
 
-## Pacotes Externos utilizados 
+## 3rd Party Nuget Packages 
  
 - Autofac ( nuget.org )
  
  
 ## 0 - Core
 
-App.Cqrs.Core é um grupo basico de interfaces para contrução de comandos e eventos para uma aplicação no modelo de Arquitetura baseada em eventos + CQRS. 
+App.Cqrs.Core is responsible for contract/interface definitions for commands and events on CQRS. 
 
-- Commands são criados e enviados pela aplicação
-- Eles são recebidos pelos commandHandlers os quais aplicam comportamentos no domínio
-- Cada comando pode gerar um ou mais eventos
-- O Bus pode publicar todos os eventos
-- Recebidos pelo EventHandlers, atualizarão todos os modelos de read/query 
-- QueryServices podem ser consumidas diretamente pelo front end
+- Commands are created and send to application
+- They are received by commandHandlers which apply domain changes 
+- Each command can generate one or more events
+- Bus can publish all events
+- EventHandlers will receive all events, and it will update ReadModels / QueryModels.
+- QueryServices can ben consumed directly from front end
